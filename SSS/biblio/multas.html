@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multas</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+
+    <h2 class="section-title">Multas</h2>
+    
+    <div class="form-container">
+        <h3>Agregar/Editar Multa</h3>
+        <form>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="usuarioMultado">Usuario Multado</label>
+                    <input type="text" class="form-control" id="usuarioMultado" name="usuarioMultado">
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="prestamo">Préstamo</label>
+                    <input type="text" class="form-control" id="prestamo" name="prestamo">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="valorMulta">Valor Multa</label>
+                    <input type="number" class="form-control" id="valorMulta" name="valorMulta">
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="fechaMulta">Fecha Multa</label>
+                    <input type="date" class="form-control" id="fechaMulta" name="fechaMulta">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-12">
+                    <label for="estadoMulta">Estado</label>
+                    <select id="estadoMulta" class="form-control" name="estadoMulta">
+                        <option value="1">Prestamo</option>
+                        <option value="2">Pagada</option>
+                        <option value="3">Cancelada</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary">Guardar</button>
+            </div>
+        </form>
+    </div>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Usuario Multado</th>
+                <th>Préstamo</th>
+                <th>Valor Multa</th>
+                <th>Fecha Multa</th>
+                <th>Estado</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Informacion de las multas -->
+        </tbody>
+    </table>
+
+</body>
+</html>
