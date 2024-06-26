@@ -2,7 +2,7 @@
 // Busqueda por id
 function findById(id) {
     $.ajax({
-        url: 'http://localhost:9000/prueba/prueba/clientes/' + id,
+        url: 'http://localhost:9000/biblioteca/Api/biblioteca/libros/' + id,
         method: "GET",
         headers: {
             "Content-Type": "application/json"
@@ -15,13 +15,14 @@ function findById(id) {
         $("#genero").val(item.genero)
         $("#disponibles").val(item.ejemplaresDisponibles)
         $("#ocupados").val(item.ejemplaresOcupados)
+        $("#")
         
     })
 }
 
 function loadTable() {
     $.ajax({
-        url: 'http://localhost:9000/prueba/prueba/clientes/',
+        url: 'http://localhost:9000/biblioteca/Api/biblioteca/libros    ',
         method: "GET",
         headers: {
             "Content-Type": "application/json"
@@ -62,7 +63,7 @@ function deleteById(id) {
     }).then((result) => {
         if (result.isConfirmed) {
             $.ajax({
-                url: 'http://localhost:9000/prueba/prueba/clientes/' + id,
+                url: 'http://localhost:9000/biblioteca/Api/biblioteca/libros/' + id,
                 method: "delete",
                 headers: {
                     "Content-Type": "application/json"
@@ -107,7 +108,7 @@ function guardar() {
     
     // Determinar si se debe realizar una solicitud POST o PUT
     var method = (id !== "") ? "PUT" : "POST";
-    var url = (id !== "") ? "http://localhost:9000/prueba/prueba/clientes/" + id : "http://localhost:9000/prueba/prueba/clientes/";
+    var url = (id !== "") ? "http://localhost:9000/biblioteca/Api/biblioteca/libros/" + id : "http://localhost:9000/biblioteca/Api/biblioteca/libros";
 
     // Realizar la solicitud AJAX
     $.ajax({
@@ -164,7 +165,7 @@ function filtros(){
         };
 
         $.ajax({
-            url: 'http://localhost:9000/prueba/prueba/clientes/filtros',
+            url: 'http://localhost:9000/biblioteca/Api/biblioteca/librosfiltros',
             method: "GET",
             data: data,
             headers: {
