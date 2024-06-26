@@ -9,6 +9,6 @@ import org.springframework.data.repository.NoRepositoryBean;
 @NoRepositoryBean
 public interface IObjectTRepository <T, ID> extends JpaRepository<T, ID> {
 
-	List<T> findByStateTrue();
+	List<T>findByEstadoTrue();
 	
 }

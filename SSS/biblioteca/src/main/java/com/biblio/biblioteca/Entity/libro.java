@@ -32,6 +32,9 @@ public class libro {
 	
 	@Column(name = "ejemplares_ocupados", nullable = false, unique = false, length = 50)
 	private int ejemplaresOcupados;
+	
+	@Column(name = "estado", nullable = false, unique = false)
+	private boolean estado;
 
 	public Long getId() {
 		return Id;
@@ -87,6 +90,14 @@ public class libro {
 
 	public void setEjemplaresOcupados(int ejemplaresOcupados) {
 		this.ejemplaresOcupados = ejemplaresOcupados;
+	}
+
+	public boolean isEstado() {
+		return estado;
+	}
+
+	public void setEstado(boolean estado) {
+		this.estado = estado;
 	}
 
 

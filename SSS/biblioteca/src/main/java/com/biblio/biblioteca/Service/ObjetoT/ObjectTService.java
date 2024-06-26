@@ -11,14 +11,10 @@ import com.biblio.biblioteca.IRepository.ObjetoT.IObjectTRepository;
 import com.biblio.biblioteca.IService.ObjetoT.IObjetoTService;
 import com.biblio.biblioteca.Utils.GlobalConstants;
 
-
-
-
-
 @Service
 public abstract class ObjectTService<T> implements IObjetoTService<T> {
 
-	   @Autowired
+	    @Autowired
 	    private IObjectTRepository<T, Long> repository;
 
 	    @Override
@@ -57,7 +53,7 @@ public abstract class ObjectTService<T> implements IObjetoTService<T> {
 	    }
 
 	    @Override
-	    public List<T> findByStateTrue() throws Exception {
-	        throw new UnsupportedOperationException("El método findByEstadoTrue() no está implementado para esta entidad");
+	    public List<T> findByEstadoTrue(){
+	        return repository.findByEstadoTrue();
 	    }
 }

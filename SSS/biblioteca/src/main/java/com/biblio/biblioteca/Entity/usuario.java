@@ -1,5 +1,6 @@
 package com.biblio.biblioteca.Entity;
 
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -28,6 +29,9 @@ public class usuario {
 	
 	@Column(name = "tipo_usuario", nullable = false, unique = true)
 	private tipoUsuario tipoUsuario;
+	
+	@Column(name = "estado", nullable = false, unique = false)
+	private boolean estado;
 
 	public Long getId() {
 		return Id;
@@ -68,6 +72,16 @@ public class usuario {
 	public void setTipoUsuario(tipoUsuario tipoUsuario) {
 		this.tipoUsuario = tipoUsuario;
 	}
+
+	public boolean isEstado() {
+		return estado;
+	}
+
+	public void setEstado(boolean estado) {
+		this.estado = estado;
+	}
+
+
 	
 	
 	

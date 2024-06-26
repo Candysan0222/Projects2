@@ -15,6 +15,6 @@ public interface IObjetoTService<T> {
 
     void delete(Long id) throws Exception;
     
-    public List<T> findByStateTrue() throws Exception ;
+    public List<T> findByEstadoTrue();
 
 }

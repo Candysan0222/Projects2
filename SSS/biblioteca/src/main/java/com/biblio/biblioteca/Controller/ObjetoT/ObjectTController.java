@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
-import com.biblio.biblioteca.IService.ObjetoT.IObjetoTService;
+import com.biblio.biblioteca.Service.ObjetoT.ObjectTService;
 import com.biblio.biblioteca.Utils.ApiResponseDto;
 
 import io.swagger.v3.oas.annotations.Operation;
@@ -25,7 +25,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 public class ObjectTController<T> {
 	
 	@Autowired
-	private IObjetoTService<T> service;
+	private ObjectTService<T> service;
 
 	@Operation(summary = "Obtener todos los objetos", responses = {
 			@ApiResponse(responseCode = "200", description = "Lista de objetos obtenida"),
@@ -82,9 +82,8 @@ public class ObjectTController<T> {
 			@ApiResponse(responseCode = "404", description = "Objetos no encontrados") })
 	@GetMapping("/disponibles")
 	public List<T> obtenerObjetosDisponibles() throws Exception {
-		// Suponiendo que el método findByEstadoTrue() está definido en la interfaz
-		// IGenericService<T>
-		return service.findByStateTrue();
+
+		return service.findByEstadoTrue();
 	}
 
 }

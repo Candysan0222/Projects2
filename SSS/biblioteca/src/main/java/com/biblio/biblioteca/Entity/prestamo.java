@@ -44,8 +44,8 @@ Cancelado*/
 	@Column(name = "fecha_devolucion", nullable = false, unique = false)
 	private LocalDateTime fechaDevolucion;
 	
-	@Column(name = "estado", nullable = false, unique = false)
-	private estado estado;
+	@Column(name = "mani", nullable = false, unique = false)
+	private estado mani;
 	
 	@ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="prestar_usuario")
@@ -54,6 +54,9 @@ Cancelado*/
 	@ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="prestar_libro")
     private libro libroPrestar;
+	
+	@Column(name = "estado", nullable = false, unique = false)
+	private boolean estado;
 
 	public Long getId() {
 		return Id;
@@ -79,12 +82,12 @@ Cancelado*/
 		this.fechaDevolucion = fechaDevolucion;
 	}
 
-	public estado getEstado() {
-		return estado;
+	public estado getMani() {
+		return mani;
 	}
 
-	public void setEstado(estado estado) {
-		this.estado = estado;
+	public void setMani(estado mani) {
+		this.mani = mani;
 	}
 
 	public usuario getPrestarUsuario() {
@@ -102,6 +105,15 @@ Cancelado*/
 	public void setLibroPrestar(libro libroPrestar) {
 		this.libroPrestar = libroPrestar;
 	}
+
+	public boolean isEstado() {
+		return estado;
+	}
+
+	public void setEstado(boolean estado) {
+		this.estado = estado;
+	}
+
 
 	
 }

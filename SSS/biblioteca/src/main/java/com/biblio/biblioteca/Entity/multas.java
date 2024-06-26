@@ -48,6 +48,7 @@ Estado.*/
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name="prestamo")
     private prestamo prestamo;
+	
 
 	public Long getId() {
 		return Id;
