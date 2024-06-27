@@ -11,9 +11,10 @@ function findById(id) {
         $("#id").val(item.id)
         $("#fechaPrestamo").val(item.fechaPrestamo)
         $("#fechaDevolucion").val(item.fechaDevolucion)
-        $("#usuario").val(item.estado)
-        $("#libro").val(item.usuarioId)
-        $("#estado").val(item.libroId)
+        $("#usuario").val(item.usuarioId)
+        $("#libro").val(item.libroId)
+        $("#mani").val(item.mani)
+        $("#estado").val((item.estado == true) ? "1" : "0")
         
     })
 }
@@ -30,12 +31,13 @@ function loadTable() {
         items.forEach(function (item, index, array) {
             registros += `
                         <tr class="table-light">
-                            <td>`+ item.id + `</td>
+                            <td>`+ index + 1 + `</td>
                             <td>`+ item.fechaPrestamo +`</td>
                             <td>`+ item.fechaDevolucion + `</td>
                             <td>`+ item.usuarioId + `</td>
                             <td>`+ item.libroId + `</td>
-                            <td>`+ item.estado + `</td>
+                            <td>`+ item.mani + `</td>
+                            <td>`+ ((item.estado == true) ? "Activo" : "Inactivo") + `</td>
                             <td><button class="btn btn-warning" type="button" onclick="findById(`+ item.id + `);" data-bs-toggle="modal"
                             data-bs-target="#modalCliente"><i class="fi fi-rr-pencil"></i></button>
                             <button class="btn btn-danger" type="button" onclick="deleteById(`+ item.id + `);"><i class="fi fi-rr-trash"></i></button></td>
@@ -93,18 +95,19 @@ function deleteById(id) {
 function guardar() {
     // Obtener el valor del campo de ID
     var id = $("#id").val();
-    
-
-    
+        
     // Crear el objeto de datos a enviar
     var data = {
         fechaPrestamo: $("#fechaPrestamo").val(),
         fechaDevolucion: $("#fechaDevolucion").val(),
         usuarioId: {
-            id: $("#usuario").val()
+            id: $("#usuarioId").val()
         },
-        libroPrestar: $("#libro").val(),
-        estado: $("#estado").val()
+        libroId:{
+            id:$("#libroId").val(),
+        },        
+        mani: $("#mani").val(),
+        estado: ($("#estado").val() == "1") ? true : false
     };
     
     // Determinar si se debe realizar una solicitud POST o PUT
@@ -182,6 +185,7 @@ function filtros(){
                                 <td>`+ item.fechaDevolucion + `</td>
                                 <td>`+ item.prestarUsuario + `</td>
                                 <td>`+ item.libroPrestar + `</td>
+                                <td>`+ item.mani + `</td>
                                 <td>`+ item.estado + `</td>
                                 <td><button class="btnEdit" type="button" onclick="findById(`+ item.id + `);" data-bs-toggle="modal"
                                 data-bs-target="#modalCliente"><i class="fi fi-rr-pencil"></i></button></td>
@@ -204,6 +208,7 @@ function clearData() {
     $("#fechaDevolucion").val(""),
     $("#usuario").val(""),
     $("#libro").val(""),
+    $("#mani").val("")
     $("#estado").val("")
 }
 

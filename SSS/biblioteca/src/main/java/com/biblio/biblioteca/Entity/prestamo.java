@@ -48,11 +48,11 @@ Cancelado*/
 	private estado mani;
 	
 	@ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name="prestar_usuario")
+    @JoinColumn(name="usuarioId")
     private usuario usuarioId;
 	
 	@ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name="prestar_libro")
+    @JoinColumn(name="libroId")
     private libro libroId;
 	
 	@Column(name = "estado", nullable = false, unique = false)

@@ -2,25 +2,25 @@
 // Busqueda por id
 function findById(id) {
     $.ajax({
-        url: 'http://localhost:9000/prueba/prueba/clientes/' + id,
+        url: 'http://localhost:9000/biblioteca/Api/biblioteca/multas/' + id,
         method: "GET",
         headers: {
             "Content-Type": "application/json"
         }
     }).done(function (item) {
         $("#id").val(item.id)
-        $("#usuarioMultado").val(item.usuarioMultado)
-        $("#prestamo").val(item.prestamo)
+        $("#usuarioId").val(item.usuarioId)
+        $("#prestamoId").val(item.prestamoId)
         $("#valorMulta").val(item.valorMulta)
         $("#fechaMulta").val(item.fechaMulta)
-        $("#estadoMulta").val(item.estado)
+        $("#estado").val((item.estado == true) ? "1" : "0")
         
     })
 }
 
 function loadTable() {
     $.ajax({
-        url: 'http://localhost:9000/prueba/prueba/clientes/',
+        url: 'http://localhost:9000/biblioteca/Api/biblioteca/multas',
         method: "GET",
         headers: {
             "Content-Type": "application/json"
@@ -30,19 +30,19 @@ function loadTable() {
         items.forEach(function (item, index, array) {
             registros += `
                         <tr class="table-light">
-                            <td>`+ item.id + `</td>
-                            <td>`+ item.usuarioMultado +`</td>
-                            <td>`+ item.prestamo + `</td>
+                            <td>`+ index + 1 + `</td>
+                            <td>`+ item.usuarioId +`</td>
+                            <td>`+ item.prestamoId + `</td>
                             <td>`+ item.valorMulta + `</td>
                             <td>`+ item.fechaMulta + `</td>
-                            <td>`+ item.estado + `</td>
-                            <td><button class="btnEdit" type="button" onclick="findById(`+ item.id + `);" data-bs-toggle="modal"
-                            data-bs-target="#modalCliente"><i class="fi fi-rr-pencil"></i></button></td>
-                            <td><button class="btnDelete" type="button" onclick="deleteById(`+ item.id + `);"><i class="fi fi-rr-trash"></i></button></td>
+                            <td>`+ ((item.estado == true) ? "Activo" : "Inactivo") + `</td>
+                            <td><button class="btn btn-warning" type="button" onclick="findById(`+ item.id + `);" data-bs-toggle="modal"
+                            data-bs-target="#modalCliente"><i class="fi fi-rr-pencil"></i></button>
+                            <button class="btn btn-danger" type="button" onclick="deleteById(`+ item.id + `);"><i class="fi fi-rr-trash"></i></button></td>
                         </tr>
                         `;
         })
-        $("#dataResult").html(dataResult);
+        $("#dataResult").html(registros);
     })
 }
 
@@ -60,7 +60,7 @@ function deleteById(id) {
     }).then((result) => {
         if (result.isConfirmed) {
             $.ajax({
-                url: 'http://localhost:9000/prueba/prueba/clientes/' + id,
+                url: 'http://localhost:9000/biblioteca/Api/biblioteca/multas/' + id,
                 method: "delete",
                 headers: {
                     "Content-Type": "application/json"
@@ -97,16 +97,16 @@ function guardar() {
     
     // Crear el objeto de datos a enviar
     var data = {
-        usuarioMultado: $("#usuarioMultado").val(),
-        prestamo: $("#prestamo").val(),
+        usuarioMultado: $("#usuarioId").val(),
+        prestamo: $("#prestamoId").val(),
         valorMulta: $("#valorMulta").val(),
         fechaMulta: $("#fechaMulta").val(),
-        estado: $("#estadoMulta").val()
+        estado: ($("#estado").val() == "1") ? true : false
     };
     
     // Determinar si se debe realizar una solicitud POST o PUT
     var method = (id !== "") ? "PUT" : "POST";
-    var url = (id !== "") ? "http://localhost:9000/prueba/prueba/clientes/" + id : "http://localhost:9000/prueba/prueba/clientes/";
+    var url = (id !== "") ? "http://localhost:9000/biblioteca/Api/biblioteca/multas/" + id : "http://localhost:9000/biblioteca/Api/biblioteca/multas";
 
     // Realizar la solicitud AJAX
     $.ajax({
@@ -163,7 +163,7 @@ function filtros(){
         };
 
         $.ajax({
-            url: 'http://localhost:9000/prueba/prueba/clientes/filtros',
+            url: 'http://localhost:9000/biblioteca/Api/biblioteca/multasfiltros',
             method: "GET",
             data: data,
             headers: {
