@@ -27,7 +27,7 @@ public class usuario {
 	@Column(name = "correo", nullable = false, unique = true, length = 50)
 	private String correo;
 	
-	@Column(name = "tipo_usuario", nullable = false, unique = true)
+	@Column(name = "tipo_usuario", nullable = false, unique = false)
 	private tipoUsuario tipoUsuario;
 	
 	@Column(name = "estado", nullable = false, unique = false)

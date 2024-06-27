@@ -5,12 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Usuarios</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="lib/node_modules/@flaticon/flaticon-uicons/css/all/all.css">
+    <link rel="stylesheet" href="lib/node_modules/bootswatch/dist/lumen/bootstrap.css">
+    <link rel="stylesheet" href="lib/node_modules/sweetalert2/dist/sweetalert2.css">
     <link rel="stylesheet" href="css/estilos.css">
 </head>
 <body>
 
     <h2 class="section-title">Usuarios</h2>
-    
+    <input type="hidden" id="id">
+
     <div class="form-container">
         <h3>Agregar/Editar Usuario</h3>
         <form>
@@ -32,14 +36,22 @@
                 <div class="form-group col-md-6">
                     <label for="tipo">Tipo de usuario</label>
                     <select id="tipo" class="form-control" name="tipo">
-                        <option value="lector">Lector</option>
-                        <option value="bibliotecario">Bibliotecario</option>
-                        <option value="administrador">Administrador</option>
+                        <option value="Lector">Lector</option>
+                        <option value="Bibliotecario">Bibliotecario</option>
+                        <option value="Administrador">Administrador</option>
                     </select>
+                    
                 </div>
+                <div class="form-group col-md-4">
+                    <label for="estado">Estado</label>
+                    <select name="estado" id="estado">
+                        <option value="1">Activo</option>
+                        <option value="0">Inactivo</option>
+                    </select>
+            </div>
             </div>
             <div class="form-group">
-                <button type="submit" class="btn btn-primary">Guardar</button>
+                <button type="button" class="btn btn-primary" onclick="guardar()">Guardar</button>
             </div>
         </form>
     </div>
@@ -47,11 +59,12 @@
     <table class="table">
         <thead>
             <tr>
-                <th>ID</th>
+                <th>#</th>
                 <th>Nombre</th>
                 <th>Dirección</th>
                 <th>Correo electrónico</th>
                 <th>Tipo de usuario</th>
+                <th>Estado</th>
                 <th>Acciones</th>
             </tr>
         </thead>
@@ -59,6 +72,13 @@
             <!--Informacion de la base de datos-->
         </tbody>
     </table>
+
+    <script src="js/usuarios.js"></script>
+    <script src="lib/node_modules/sweetalert2/dist/sweetalert2.js"></script>
+    <script src="lib/node_modules/jquery/dist/jquery.js"></script>
+    <script>
+        loadTable()
+    </script>
 
 </body>
 </html>

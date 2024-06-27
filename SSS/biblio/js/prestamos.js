@@ -2,25 +2,25 @@
 // Busqueda por id
 function findById(id) {
     $.ajax({
-        url: 'http://localhost:9000/prueba/prueba/clientes/' + id,
+        url: 'http://localhost:9000/biblioteca/Api/biblioteca/prestamo/' + id,
         method: "GET",
         headers: {
             "Content-Type": "application/json"
         }
     }).done(function (item) {
-        $("#id").val(item.Id)
+        $("#id").val(item.id)
         $("#fechaPrestamo").val(item.fechaPrestamo)
         $("#fechaDevolucion").val(item.fechaDevolucion)
         $("#usuario").val(item.estado)
-        $("#libro").val(item.prestarUsuario)
-        $("#estado").val(item.libroPrestar)
+        $("#libro").val(item.usuarioId)
+        $("#estado").val(item.libroId)
         
     })
 }
 
 function loadTable() {
     $.ajax({
-        url: 'http://localhost:9000/prueba/prueba/clientes/',
+        url: 'http://localhost:9000/biblioteca/Api/biblioteca/prestamo',
         method: "GET",
         headers: {
             "Content-Type": "application/json"
@@ -30,19 +30,20 @@ function loadTable() {
         items.forEach(function (item, index, array) {
             registros += `
                         <tr class="table-light">
-                            <td>`+ item.Id + `</td>
+                            <td>`+ item.id + `</td>
                             <td>`+ item.fechaPrestamo +`</td>
                             <td>`+ item.fechaDevolucion + `</td>
-                            <td>`+ item.prestarUsuario + `</td>
-                            <td>`+ item.libroPrestar + `</td>
+                            <td>`+ item.usuarioId + `</td>
+                            <td>`+ item.libroId + `</td>
                             <td>`+ item.estado + `</td>
-                            <td><button class="btnEdit" type="button" onclick="findById(`+ item.Id + `);" data-bs-toggle="modal"
-                            data-bs-target="#modalCliente"><i class="fi fi-rr-pencil"></i></button></td>
-                            <td><button class="btnDelete" type="button" onclick="deleteById(`+ item.Id + `);"><i class="fi fi-rr-trash"></i></button></td>
+                            <td><button class="btn btn-warning" type="button" onclick="findById(`+ item.id + `);" data-bs-toggle="modal"
+                            data-bs-target="#modalCliente"><i class="fi fi-rr-pencil"></i></button>
+                            <button class="btn btn-danger" type="button" onclick="deleteById(`+ item.id + `);"><i class="fi fi-rr-trash"></i></button></td>
+                        </tr>
                         </tr>
                         `;
         })
-        $("#dataResult").html(dataResult);
+        $("#dataResult").html(registros);
     })
 }
 
@@ -60,7 +61,7 @@ function deleteById(id) {
     }).then((result) => {
         if (result.isConfirmed) {
             $.ajax({
-                url: 'http://localhost:9000/prueba/prueba/clientes/' + id,
+                url: 'http://localhost:9000/biblioteca/Api/biblioteca/prestamo/' + id,
                 method: "delete",
                 headers: {
                     "Content-Type": "application/json"
@@ -99,14 +100,16 @@ function guardar() {
     var data = {
         fechaPrestamo: $("#fechaPrestamo").val(),
         fechaDevolucion: $("#fechaDevolucion").val(),
-        prestarUsuario: $("#usuario").val(),
+        usuarioId: {
+            id: $("#usuario").val()
+        },
         libroPrestar: $("#libro").val(),
         estado: $("#estado").val()
     };
     
     // Determinar si se debe realizar una solicitud POST o PUT
     var method = (id !== "") ? "PUT" : "POST";
-    var url = (id !== "") ? "http://localhost:9000/prueba/prueba/clientes/" + id : "http://localhost:9000/prueba/prueba/clientes/";
+    var url = (id !== "") ? "http://localhost:9000/biblioteca/Api/biblioteca/prestamo/" + id : "http://localhost:9000/biblioteca/Api/biblioteca/prestamo";
 
     // Realizar la solicitud AJAX
     $.ajax({
@@ -163,7 +166,7 @@ function filtros(){
         };
 
         $.ajax({
-            url: 'http://localhost:9000/prueba/prueba/clientes/filtros',
+            url: 'http://localhost:9000/biblioteca/Api/biblioteca/prestamofiltros',
             method: "GET",
             data: data,
             headers: {

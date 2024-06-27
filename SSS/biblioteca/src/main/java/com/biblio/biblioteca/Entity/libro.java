@@ -13,7 +13,7 @@ public class libro {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long Id;
+	private Long id;
 	
 	@Column(name = "titulo", nullable = false, unique = true, length = 50)
 	private String titulo;
@@ -36,12 +36,13 @@ public class libro {
 	@Column(name = "estado", nullable = false, unique = false)
 	private boolean estado;
 
+
 	public Long getId() {
-		return Id;
+		return id;
 	}
 
 	public void setId(Long id) {
-		Id = id;
+		this.id = id;
 	}
 
 	public String getTitulo() {

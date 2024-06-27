@@ -2,24 +2,25 @@
 // Busqueda por id
 function findById(id) {
     $.ajax({
-        url: 'http://localhost:9000/prueba/prueba/clientes/' + id,
+        url: 'http://localhost:9000/biblioteca/Api/biblioteca/usuario/' + id,
         method: "GET",
         headers: {
             "Content-Type": "application/json"
         }
     }).done(function (item) {
-        $("#id").val(item.Id)
+        $("#id").val(item.id)
         $("#nombre").val(item.nombre)
         $("#direccion").val(item.direccion)
         $("#email").val(item.correo)
         $("#tipo").val(item.tipoUsuario)
+        $("#estado").val((item.estado == true) ? "1" : "0")
         
     })
 }
 
 function loadTable() {
     $.ajax({
-        url: 'http://localhost:9000/prueba/prueba/clientes/',
+        url: 'http://localhost:9000/biblioteca/Api/biblioteca/usuario',
         method: "GET",
         headers: {
             "Content-Type": "application/json"
@@ -29,18 +30,19 @@ function loadTable() {
         items.forEach(function (item, index, array) {
             registros += `
                         <tr class="table-light">
-                            <td>`+ item.Id + `</td>
+                            <td>`+ index + 1 + `</td>
                             <td>`+ item.nombre +`</td>
                             <td>`+ item.direccion + `</td>
                             <td>`+ item.correo + `</td>
                             <td>`+ item.tipoUsuario + `</td>
-                            <td><button class="btnEdit" type="button" onclick="findById(`+ item.Id + `);" data-bs-toggle="modal"
-                            data-bs-target="#modalCliente"><i class="fi fi-rr-pencil"></i></button></td>
-                            <td><button class="btnDelete" type="button" onclick="deleteById(`+ item.Id + `);"><i class="fi fi-rr-trash"></i></button></td>
+                            <td>`+ ((item.estado == true) ? "Activo" : "Inactivo") + `</td>
+                            <td><button class="btn btn-warning" type="button" onclick="findById(`+ item.id + `);" data-bs-toggle="modal"
+                            data-bs-target="#modalCliente"><i class="fi fi-rr-pencil"></i></button>
+                            <button class="btn btn-danger" type="button" onclick="deleteById(`+ item.id + `);"><i class="fi fi-rr-trash"></i></button></td>
                         </tr>
                         `;
         })
-        $("#dataResult").html(dataResult);
+        $("#dataResult").html(registros);
     })
 }
 
@@ -58,7 +60,7 @@ function deleteById(id) {
     }).then((result) => {
         if (result.isConfirmed) {
             $.ajax({
-                url: 'http://localhost:9000/prueba/prueba/clientes/' + id,
+                url: 'http://localhost:9000/biblioteca/Api/biblioteca/usuario/' + id,
                 method: "delete",
                 headers: {
                     "Content-Type": "application/json"
@@ -98,12 +100,13 @@ function guardar() {
         nombre: $("#nombre").val(),
         direccion: $("#direccion").val(),
         correo: $("#email").val(),
-        tipoUsuario: $("#tipo").val()
+        tipoUsuario: $("#tipo").val(),
+        estado: ($("#estado").val() == "1") ? true : false
     };
     
     // Determinar si se debe realizar una solicitud POST o PUT
     var method = (id !== "") ? "PUT" : "POST";
-    var url = (id !== "") ? "http://localhost:9000/prueba/prueba/clientes/" + id : "http://localhost:9000/prueba/prueba/clientes/";
+    var url = (id !== "") ? "http://localhost:9000/biblioteca/Api/biblioteca/usuario/" + id : "http://localhost:9000/biblioteca/Api/biblioteca/usuario";
 
     // Realizar la solicitud AJAX
     $.ajax({
@@ -160,7 +163,7 @@ function filtros(){
         };
 
         $.ajax({
-            url: 'http://localhost:9000/prueba/prueba/clientes/filtros',
+            url: 'http://localhost:9000/biblioteca/Api/biblioteca/usuariofiltros',
             method: "GET",
             data: data,
             headers: {
@@ -176,9 +179,7 @@ function filtros(){
                                 <td>`+ item.direccion + `</td>
                                 <td>`+ item.correo + `</td>
                                 <td>`+ item.tipoUsuario + `</td>
-                                <td><button class="btnEdit" type="button" onclick="findById(`+ item.id + `);" data-bs-toggle="modal"
-                                data-bs-target="#modalCliente"><i class="fi fi-rr-pencil"></i></button></td>
-                                <td><button class="btnDelete" type="button" onclick="deleteById(`+ item.id + `);"><i class="fi fi-rr-trash"></i></button></td>
+                                
                             </tr>
                             `;
             })
@@ -197,6 +198,7 @@ function clearData() {
     $("#direccion").val(""),
     $("#email").val(""),
     $("#tipo").val("")
+    $("#estado").val("")
 }
 
 function limpiarFiltros(){

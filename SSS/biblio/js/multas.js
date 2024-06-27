@@ -8,7 +8,7 @@ function findById(id) {
             "Content-Type": "application/json"
         }
     }).done(function (item) {
-        $("#id").val(item.Id)
+        $("#id").val(item.id)
         $("#usuarioMultado").val(item.usuarioMultado)
         $("#prestamo").val(item.prestamo)
         $("#valorMulta").val(item.valorMulta)
@@ -30,15 +30,15 @@ function loadTable() {
         items.forEach(function (item, index, array) {
             registros += `
                         <tr class="table-light">
-                            <td>`+ item.Id + `</td>
+                            <td>`+ item.id + `</td>
                             <td>`+ item.usuarioMultado +`</td>
                             <td>`+ item.prestamo + `</td>
                             <td>`+ item.valorMulta + `</td>
                             <td>`+ item.fechaMulta + `</td>
                             <td>`+ item.estado + `</td>
-                            <td><button class="btnEdit" type="button" onclick="findById(`+ item.Id + `);" data-bs-toggle="modal"
+                            <td><button class="btnEdit" type="button" onclick="findById(`+ item.id + `);" data-bs-toggle="modal"
                             data-bs-target="#modalCliente"><i class="fi fi-rr-pencil"></i></button></td>
-                            <td><button class="btnDelete" type="button" onclick="deleteById(`+ item.Id + `);"><i class="fi fi-rr-trash"></i></button></td>
+                            <td><button class="btnDelete" type="button" onclick="deleteById(`+ item.id + `);"><i class="fi fi-rr-trash"></i></button></td>
                         </tr>
                         `;
         })

@@ -36,7 +36,7 @@ Cancelado*/
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long Id;
+	private Long id;
 	
 	@Column(name = "fecha_prestamo", nullable = false, unique = false)
 	private LocalDateTime fechaPrestamo;
@@ -49,21 +49,21 @@ Cancelado*/
 	
 	@ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="prestar_usuario")
-    private usuario prestarUsuario;
+    private usuario usuarioId;
 	
 	@ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="prestar_libro")
-    private libro libroPrestar;
+    private libro libroId;
 	
 	@Column(name = "estado", nullable = false, unique = false)
 	private boolean estado;
 
 	public Long getId() {
-		return Id;
+		return id;
 	}
 
 	public void setId(Long id) {
-		Id = id;
+		this.id = id;
 	}
 
 	public LocalDateTime getFechaPrestamo() {
@@ -90,20 +90,20 @@ Cancelado*/
 		this.mani = mani;
 	}
 
-	public usuario getPrestarUsuario() {
-		return prestarUsuario;
+	public usuario getUsuarioId() {
+		return usuarioId;
 	}
 
-	public void setPrestarUsuario(usuario prestarUsuario) {
-		this.prestarUsuario = prestarUsuario;
+	public void setUsuarioId(usuario usuarioId) {
+		this.usuarioId = usuarioId;
 	}
 
-	public libro getLibroPrestar() {
-		return libroPrestar;
+	public libro getLibroId() {
+		return libroId;
 	}
 
-	public void setLibroPrestar(libro libroPrestar) {
-		this.libroPrestar = libroPrestar;
+	public void setLibroId(libro libroId) {
+		this.libroId = libroId;
 	}
 
 	public boolean isEstado() {
@@ -113,6 +113,8 @@ Cancelado*/
 	public void setEstado(boolean estado) {
 		this.estado = estado;
 	}
+
+	
 
 
 	

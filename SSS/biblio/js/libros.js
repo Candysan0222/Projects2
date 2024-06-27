@@ -8,21 +8,21 @@ function findById(id) {
             "Content-Type": "application/json"
         }
     }).done(function (item) {
-        $("#id").val(item.Id)
+        $("#id").val(item.id)
         $("#titulo").val(item.titulo)
         $("#autor").val(item.autor)
         $("#isbn").val(item.isbn)
         $("#genero").val(item.genero)
         $("#disponibles").val(item.ejemplaresDisponibles)
         $("#ocupados").val(item.ejemplaresOcupados)
-        $("#")
+        $("#estado").val((item.estado == true) ? "1" : "0")
         
     })
 }
 
 function loadTable() {
     $.ajax({
-        url: 'http://localhost:9000/biblioteca/Api/biblioteca/libros    ',
+        url: 'http://localhost:9000/biblioteca/Api/biblioteca/libros',
         method: "GET",
         headers: {
             "Content-Type": "application/json"
@@ -32,20 +32,21 @@ function loadTable() {
         items.forEach(function (item, index, array) {
             registros += `
                         <tr class="table-light">
-                            <td>`+ item.Id + `</td>
+                            <td>`+ index + 1 + `</td>
                             <td>`+ item.titulo +`</td>
                             <td>`+ item.autor + `</td>
                             <td>`+ item.isbn + `</td>
                             <td>`+ item.genero + `</td>
                             <td>`+ item.ejemplaresDisponibles + `</td>
                             <td>`+ item.ejemplaresOcupados + `</td>
-                            <td><button class="btnEdit" type="button" onclick="findById(`+ item.Id + `);" data-bs-toggle="modal"
-                            data-bs-target="#modalCliente"><i class="fi fi-rr-pencil"></i></button></td>
-                            <td><button class="btnDelete" type="button" onclick="deleteById(`+ item.Id + `);"><i class="fi fi-rr-trash"></i></button></td>
+                            <td>`+ ((item.estado == true) ? "Activo" : "Inactivo") + `</td>
+                            <td><button class="btn btn-warning" type="button" onclick="findById(`+ item.id + `);" data-bs-toggle="modal"
+                            data-bs-target="#modalCliente"><i class="fi fi-rr-pencil"></i></button>
+                            <button class="btn btn-danger" type="button" onclick="deleteById(`+ item.id + `);"><i class="fi fi-rr-trash"></i></button></td>
                         </tr>
                         `;
         })
-        $("#dataResult").html(dataResult);
+        $("#dataResult").html(registros);
     })
 }
 
@@ -103,7 +104,9 @@ function guardar() {
         isbn: $("#isbn").val(),
         genero: $("#genero").val(),
         ejemplaresDisponibles: $("#disponibles").val(),
-        ejemplaresOcupados: $("#ocupados").val()
+        ejemplaresOcupados: $("#ocupados").val(),
+        estado: ($("#estado").val() == "1") ? true : false
+
     };
     
     // Determinar si se debe realizar una solicitud POST o PUT
@@ -183,6 +186,7 @@ function filtros(){
                                 <td>`+ item.genero + `</td>
                                 <td>`+ item.ejemplaresDisponibles + `</td>
                                 <td>`+ item.ejemplaresOcupados + `</td>
+                                <td>`+ item.estado + `</td>
                                 <td><button class="btnEdit" type="button" onclick="findById(`+ item.id + `);" data-bs-toggle="modal"
                                 data-bs-target="#modalCliente"><i class="fi fi-rr-pencil"></i></button></td>
                                 <td><button class="btnDelete" type="button" onclick="deleteById(`+ item.id + `);"><i class="fi fi-rr-trash"></i></button></td>
@@ -207,6 +211,7 @@ function clearData() {
     $("#genero").val(""),
     $("#disponibles").val(""),
     $("#ocupados").val("")
+    $("#estado").val("")
 }
 
 function limpiarFiltros(){
