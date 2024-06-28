@@ -45,7 +45,7 @@ function cargarPrestamo(){
         var registros = `<option value="" disabled selected>-- Seleccione la fecha del prestamo--</option>`;
         items.forEach(function (item, index, array) {
             registros += `
-                       <option value="`+item.id+`">`+item.fechaPrestamo+`</option>
+                       <option value="`+item.id+`">`+item.fechaPrestamo+` `+item.libroId.titulo+`</option>
                         `;
         })
         $("#prestamoId").html(registros);

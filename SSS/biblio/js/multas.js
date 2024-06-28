@@ -9,8 +9,8 @@ function findById(id) {
         }
     }).done(function (item) {
         $("#id").val(item.id)
-        $("#usuarioId").val(item.usuarioId)
-        $("#prestamoId").val(item.prestamoId)
+        $("#usuarioId").val(item.usuarioId.id)
+        $("#prestamoId").val(item.prestamoId.id)
         $("#valorMulta").val(item.valorMulta)
         $("#fechaMulta").val(item.fechaMulta)
         $("#estado").val((item.estado == true) ? "1" : "0")
@@ -97,8 +97,12 @@ function guardar() {
     
     // Crear el objeto de datos a enviar
     var data = {
-        usuarioMultado: $("#usuarioId").val(),
-        prestamo: $("#prestamoId").val(),
+        usuarioId: {
+            id: $("#usuarioId").val()
+        },
+        prestamoId: {
+            id:$("#prestamoId").val()
+        },
         valorMulta: $("#valorMulta").val(),
         fechaMulta: $("#fechaMulta").val(),
         estado: ($("#estado").val() == "1") ? true : false
@@ -197,8 +201,8 @@ function filtros(){
 // Función para limpiar datos
 function clearData() {
     $("#id").val(""),
-    $("#usuarioMultado").val(""),
-    $("#prestamo").val(""),
+    $("#usuaroId").val(""),
+    $("#prestamoId").val(""),
     $("#valorMulta").val(""),
     $("#fechaMulta").val(""),
     $("#estado").val("")

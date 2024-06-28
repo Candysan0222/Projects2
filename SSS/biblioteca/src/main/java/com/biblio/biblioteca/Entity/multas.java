@@ -42,13 +42,12 @@ Estado.*/
 	private boolean estado;
 	
 	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name="usuario_multado")
-    private usuario usuarioMultado;
+	@JoinColumn(name="usuario_id")
+    private usuario usuarioId;
 	
 	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name="prestamo")
-    private prestamo prestamo;
-	
+	@JoinColumn(name="prestamoId")
+    private prestamo prestamoId;
 
 	public Long getId() {
 		return Id;
@@ -82,21 +81,26 @@ Estado.*/
 		this.estado = estado;
 	}
 
-	public usuario getUsuarioMultado() {
-		return usuarioMultado;
+	public usuario getUsuarioId() {
+		return usuarioId;
 	}
 
-	public void setUsuarioMultado(usuario usuarioMultado) {
-		this.usuarioMultado = usuarioMultado;
+	public void setUsuarioId(usuario usuarioId) {
+		this.usuarioId = usuarioId;
 	}
 
-	public prestamo getPrestamo() {
-		return prestamo;
+	public prestamo getPrestamoId() {
+		return prestamoId;
 	}
 
-	public void setPrestamo(prestamo prestamo) {
-		this.prestamo = prestamo;
+	public void setPrestamoId(prestamo prestamoId) {
+		this.prestamoId = prestamoId;
 	}
+	
+
+
+	
+	
 	
 	
 }

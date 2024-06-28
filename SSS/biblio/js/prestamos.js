@@ -11,8 +11,8 @@ function findById(id) {
         $("#id").val(item.id)
         $("#fechaPrestamo").val(item.fechaPrestamo)
         $("#fechaDevolucion").val(item.fechaDevolucion)
-        $("#usuario").val(item.usuarioId)
-        $("#libro").val(item.libroId)
+        $("#usuarioId").val(item.usuarioId.id)
+        $("#libroId").val(item.libroId.id)
         $("#mani").val(item.mani)
         $("#estado").val((item.estado == true) ? "1" : "0")
         
@@ -34,8 +34,8 @@ function loadTable() {
                             <td>`+ index + 1 + `</td>
                             <td>`+ item.fechaPrestamo +`</td>
                             <td>`+ item.fechaDevolucion + `</td>
-                            <td>`+ item.usuarioId + `</td>
-                            <td>`+ item.libroId + `</td>
+                            <td>`+ item.usuarioId.nombre + `</td>
+                            <td>`+ item.libroId.titulo + `</td>
                             <td>`+ item.mani + `</td>
                             <td>`+ ((item.estado == true) ? "Activo" : "Inactivo") + `</td>
                             <td><button class="btn btn-warning" type="button" onclick="findById(`+ item.id + `);" data-bs-toggle="modal"

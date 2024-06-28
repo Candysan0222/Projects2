@@ -20,7 +20,7 @@
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label for="usuarioId">Usuario Multado</label>
-                    <select id="UsuarioId" class="form-control" name="UsuarioId">
+                    <select id="usuarioId" class="form-control" name="UsuarioId">
                        
                     </select>
                 </div>
@@ -34,11 +34,11 @@
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label for="valorMulta">Valor Multa</label>
-                    <input type="number" class="form-control" id="valorMulta" name="valorMulta">
+                    <input type="number" class="form-control" min="0" id="valorMulta" name="valorMulta">
                 </div>
                 <div class="form-group col-md-6">
                     <label for="fechaMulta">Fecha Multa</label>
-                    <input type="date" class="form-control" id="fechaMulta" name="fechaMulta">
+                    <input type="datetime-local" class="form-control" id="fechaMulta" name="fechaMulta">
                 </div>
             </div>
             <div class="form-row">
@@ -52,7 +52,7 @@
                 </div>
             </div>
             <div class="form-group">
-                <button type="submit" class="btn btn-primary" onclick="guardar()">Guardar</button>
+                <button type="button" class="btn btn-primary" onclick="guardar()">Guardar</button>
             </div>
         </form>
     </div>
@@ -75,13 +75,14 @@
     </table>
 
     <script src="js/multas.js"></script>
+    <script src="js/cargarRegistros.js"></script>
     <script src="lib/node_modules/sweetalert2/dist/sweetalert2.js"></script>
     <script src="lib/node_modules/jquery/dist/jquery.js"></script>
 
     <script>
         loadTable()
         cargarUsuarios();
-        cargarLibro();
+        cargarPrestamo();
     </script>
 
 </body>
