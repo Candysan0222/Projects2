@@ -3,6 +3,7 @@ package com.biblio.biblioteca.IService.ObjetoT;
 import java.util.List;
 import java.util.Optional;
 
+
 public interface IObjetoTService<T> {
 
 	List<T> all() throws Exception;
@@ -16,5 +17,6 @@ public interface IObjetoTService<T> {
     void delete(Long id) throws Exception;
     
     public List<T> findByEstadoTrue();
+
 
 }

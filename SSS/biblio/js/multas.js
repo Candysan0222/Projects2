@@ -128,6 +128,9 @@ function guardar() {
         //Limpiar formulario
         clearData();
 
+        //el metodo se ejecuta y el modal se esconde o cierra
+        $("modal").modal("hide");
+
         const Toast = Swal.mixin({
             toast: true,
             position: 'top-end',

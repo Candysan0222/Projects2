@@ -12,76 +12,112 @@
 </head>
 <body>
 
-    <h2 class="section-title">Libros</h2>
- 
-    <div class="form-container">
-        <h3>Agregar/Editar Libro</h3>
-        <form>
-            <div class="form-row">
-                    <input type="hidden" class="form-control" id="id" name="id" disabled>
-                <div class="form-group col-md-4">
-                    <label for="titulo">Título</label>
-                    <input type="text" class="form-control" id="titulo" name="titulo">
-                </div>
-                <div class="form-group col-md-4">
-                    <label for="autor">Autor</label>
-                    <input type="text" class="form-control" id="autor" name="autor">
+    <div class="container">
+        <h2 class="section-title">Libros</h2>
+
+        <div class="row mb-3">
+            <div class="col-md-6">
+                <input type="text" class="form-control" placeholder="Buscar por título, autor, género o ISBN" id="filtroBusqueda">
+                
+            </div>
+            <div class="col-md-6 d-flex justify-content-end">
+                
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal">
+                    Agregar/Editar Libro
+                </button>
+            </div>
+        </div>
+
+        <!-- Botón para abrir el modal de agregar/editar libro -->
+        
+
+        <!-- Modal de agregar/editar libro -->
+        <div class="modal fade" id="modal" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modalLabel">Agregar/Editar Libro</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true" onclick="clearData()">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="libroForm">
+                            <div class="form-row">
+                                <input type="hidden" class="form-control" id="id" name="id" disabled>
+                                <div class="form-group col-md-6">
+                                    <label for="titulo">Título</label>
+                                    <input type="text" class="form-control" id="titulo" name="titulo">
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="autor">Autor</label>
+                                    <input type="text" class="form-control" id="autor" name="autor">
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="isbn">ISBN</label>
+                                    <input type="text" class="form-control" id="isbn" name="isbn">
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="genero">Género</label>
+                                    <input type="text" class="form-control" id="genero" name="genero">
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="disponibles">Número de ejemplares disponibles</label>
+                                    <input type="number" class="form-control" id="disponibles" name="disponibles">
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="ocupados">Número de ejemplares ocupados</label>
+                                    <input type="number" class="form-control" id="ocupados" name="ocupados">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="estado">Estado</label>
+                                <select name="estado" id="estado" class="form-control">
+                                    <option value="1">Activo</option>
+                                    <option value="0">Inactivo</option>
+                                </select>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="clearData()">Cancelar</button>
+                                <button type="submit" class="btn btn-primary">Guardar</button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
-            <div class="form-row">
-                <div class="form-group col-md-6">
-                    <label for="isbn">ISBN</label>
-                    <input type="text" class="form-control" id="isbn" name="isbn">
-                </div>
-                <div class="form-group col-md-6">
-                    <label for="genero">Género</label>
-                    <input type="text" class="form-control" id="genero" name="genero">
-                </div>
-            </div>
-            <div class="form-row">
-                <div class="form-group col-md-4">
-                    <label for="disponibles">Número de ejemplares disponibles</label>
-                    <input type="number" class="form-control" id="disponibles" name="disponibles">
-                </div>
-                <div class="form-group col-md-4">
-                    <label for="ocupados">Número de ejemplares ocupados</label>
-                    <input type="number" class="form-control" id="ocupados" name="ocupados">
-                </div>
-                <div class="form-group col-md-4">
-                    <label for="estado">Estado</label>
-                    <select name="estado" id="estado">
-                        <option value="1">Activo</option>
-                        <option value="0">Inactivo</option>
-                    </select>
-                </div>
-            <div class="form-group">
-                <button type="button" class="btn btn-primary" onclick="guardar()">Guardar</button>
-            </div>
-        </form>
+        </div>
+
+        <!-- Tabla de libros -->
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Título</th>
+                    <th>Autor</th>
+                    <th>ISBN</th>
+                    <th>Género</th>
+                    <th>Disponibles</th>
+                    <th>Ocupados</th>
+                    <th>Estado</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody id="dataResult">
+                <!-- Aquí irán las filas de libros -->
+            </tbody>
+        </table>
     </div>
-
-    <table class="table">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Título</th>
-                <th>Autor</th>
-                <th>ISBN</th>
-                <th>Género</th>
-                <th>Disponibles</th>
-                <th>Ocupados</th>
-                <th>Estado</th>
-                <th>Acciones</th>
-            </tr>
-        </thead>
-        <tbody id="dataResult">
-            <!-- Aquí irán las filas de libros -->
-        </tbody>
-    </table>
-
-    <script src="js/libros.js"></script>
-    <script src="lib/node_modules/sweetalert2/dist/sweetalert2.js"></script>
     <script src="lib/node_modules/jquery/dist/jquery.js"></script>
+    <script src="lib/node_modules/sweetalert2/dist/sweetalert2.js"></script>
+    <script src="js/libros.js"></script>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script>
         loadTable();
     </script>
