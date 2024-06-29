@@ -1,5 +1,6 @@
-//Cargar de manera automatica los datos regostrados
 // Busqueda por id
+
+
 function findById(id) {
     $.ajax({
         url: 'http://localhost:9000/biblioteca/Api/biblioteca/multas/' + id,
