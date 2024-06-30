@@ -17,7 +17,7 @@
 
         <div class="row mb-3">
             <div class="col-md-6">
-                <input type="text" class="form-control" placeholder="Buscar por título, autor, género o ISBN" id="filtroBusqueda">
+                <input type="text" class="form-control" onchange="loadTable()" placeholder="Buscar por título, autor, género o ISBN" id="filtroBusqueda">
                 
             </div>
             <div class="col-md-6 d-flex justify-content-end">
@@ -47,31 +47,31 @@
                                 <input type="hidden" class="form-control" id="id" name="id" disabled>
                                 <div class="form-group col-md-6">
                                     <label for="titulo">Título</label>
-                                    <input type="text" class="form-control" id="titulo" name="titulo">
+                                    <input type="text" class="form-control" id="titulo" name="titulo" minlength="3" maxlength="20" required>
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label for="autor">Autor</label>
-                                    <input type="text" class="form-control" id="autor" name="autor">
+                                    <input type="text" class="form-control" id="autor" name="autor" minlength="5" maxlength="20" required>
                                 </div>
                             </div>
                             <div class="form-row">
                                 <div class="form-group col-md-6">
                                     <label for="isbn">ISBN</label>
-                                    <input type="text" class="form-control" id="isbn" name="isbn">
+                                    <input type="text" class="form-control" id="isbn" name="isbn" required>
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label for="genero">Género</label>
-                                    <input type="text" class="form-control" id="genero" name="genero">
+                                    <input type="text" class="form-control" id="genero" name="genero" required>
                                 </div>
                             </div>
                             <div class="form-row">
                                 <div class="form-group col-md-6">
                                     <label for="disponibles">Número de ejemplares disponibles</label>
-                                    <input type="number" class="form-control" id="disponibles" name="disponibles">
+                                    <input type="number" class="form-control" id="disponibles" name="disponibles" minlength="" maxlength="" required>
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label for="ocupados">Número de ejemplares ocupados</label>
-                                    <input type="number" class="form-control" id="ocupados" name="ocupados">
+                                    <input type="number" class="form-control" id="ocupados" name="ocupados" required>
                                 </div>
                             </div>
                             <div class="form-group">

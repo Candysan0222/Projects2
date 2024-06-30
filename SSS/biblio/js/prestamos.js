@@ -21,7 +21,7 @@ function findById(id) {
 
 function loadTable() {
     $.ajax({
-        url: 'http://localhost:9000/biblioteca/Api/biblioteca/prestamo',
+        url: 'http://localhost:9000/biblioteca/Api/biblioteca/prestamo/filtro',
         method: "GET",
         headers: {
             "Content-Type": "application/json"
@@ -159,49 +159,7 @@ function guardar() {
 }
 
 
-function filtros(){
-    var nombre = $("#filtrarNombre").val();
-    var ciudad = $("#filtrarCiudad").val();
-    var estado = ($("#filtrarEstado").val() === '1') ? true : null;
 
-    if (nombre || ciudad || estado) {
-        var data = {
-            nombre: nombre,
-            ciudad: ciudad,
-            estado: estado
-        };
-
-        $.ajax({
-            url: 'http://localhost:9000/biblioteca/Api/biblioteca/prestamofiltros',
-            method: "GET",
-            data: data,
-            headers: {
-                "Content-Type": "application/json"
-            }
-        }).done(function (items) {
-            var registros = "";
-            items.forEach(function (item, index, array) {
-                registros += `
-                            <tr class="table-light">
-                                <td>`+ item.id + `</td>
-                                <td>`+ item.fechaPrestamo +`</td>
-                                <td>`+ item.fechaDevolucion + `</td>
-                                <td>`+ item.prestarUsuario + `</td>
-                                <td>`+ item.libroPrestar + `</td>
-                                <td>`+ item.mani + `</td>
-                                <td>`+ item.estado + `</td>
-                                <td><button class="btnEdit" type="button" onclick="findById(`+ item.id + `);" data-bs-toggle="modal"
-                                data-bs-target="#modalCliente"><i class="fi fi-rr-pencil"></i></button></td>
-                                <td><button class="btnDelete" type="button" onclick="deleteById(`+ item.id + `);"><i class="fi fi-rr-trash"></i></button></td>
-                            </tr>
-                            `;
-            })
-            $("#dataResult").html(registros);
-        });
-    } else {
-        loadTable();
-    }
-}
 
 
 // Función para limpiar datos

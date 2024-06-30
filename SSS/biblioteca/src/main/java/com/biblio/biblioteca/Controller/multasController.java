@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.biblio.biblioteca.Controller.ObjetoT.ObjectTController;
@@ -27,8 +28,8 @@ public class multasController extends ObjectTController<multas>{
 	@Operation(summary = "Consultar registro por filtro", responses = {
 			@ApiResponse(responseCode = "200", description = "Consulta realizada"),
 			@ApiResponse(responseCode = "404", description = "No se encontraron consultas") })
-	@GetMapping("/{search}")
-	public List<multas> buscar(@PathVariable String search ) throws Exception {
+	@GetMapping("/filtro")
+	public List<multas> buscar(@RequestParam(required = false) String search ) throws Exception {
 		return service.buscar(search);
 	}
 }

@@ -20,7 +20,7 @@ function findById(id) {
 
 function loadTable() {
     $.ajax({
-        url: 'http://localhost:9000/biblioteca/Api/biblioteca/usuario',
+        url: 'http://localhost:9000/biblioteca/Api/biblioteca/usuario/filtro',
         method: "GET",
         headers: {
             "Content-Type": "application/json"
@@ -152,46 +152,6 @@ function guardar() {
     });
 }
 
-
-function filtros(){
-    var nombre = $("#filtrarNombre").val();
-    var ciudad = $("#filtrarCiudad").val();
-    var estado = ($("#filtrarEstado").val() === '1') ? true : null;
-
-    if (nombre || ciudad || estado) {
-        var data = {
-            nombre: nombre,
-            ciudad: ciudad,
-            estado: estado
-        };
-
-        $.ajax({
-            url: 'http://localhost:9000/biblioteca/Api/biblioteca/usuariofiltros',
-            method: "GET",
-            data: data,
-            headers: {
-                "Content-Type": "application/json"
-            }
-        }).done(function (items) {
-            var registros = "";
-            items.forEach(function (item, index, array) {
-                registros += `
-                            <tr class="table-light">
-                                <td>`+ item.id + `</td>
-                                <td>`+ item.nombre +`</td>
-                                <td>`+ item.direccion + `</td>
-                                <td>`+ item.correo + `</td>
-                                <td>`+ item.tipoUsuario + `</td>
-                                
-                            </tr>
-                            `;
-            })
-            $("#dataResult").html(registros);
-        });
-    } else {
-        loadTable();
-    }
-}
 
 
 // Función para limpiar datos

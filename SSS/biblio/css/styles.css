@@ -54,3 +54,13 @@ body {
     font-size: 20px;
     margin: 10px 0 0;
 }
+
+.login-btn {
+    position: absolute;
+    bottom: 20px;
+    width: 180px; /* Ajustar el ancho según el padding */
+    text-align: center;
+}
+.login-btn i {
+    margin-right: 5px;
+}
